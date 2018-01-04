@@ -1,0 +1,34 @@
+<ui:composition
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns="http://www.w3.org/1999/xhtml">
+
+
+    <li data-id="#{card.id}">
+        <div class="kb-panel panel panel-default" style="border-color: #{card.color}">
+            <div class="panel-heading" style="position: relative; background-color: #{card.color}">
+                #{card.title}
+                <h:commandLink rendered="#{card.state != 'ARCHIVED'}">
+                    <span class="glyphicon glyphicon-edit" title="#{msg.edit}"
+                          style="position: absolute; right: 15px; top: 12px;"/>
+                    <f:ajax event="click" listener="#{cardEditorMbean.editCard(card)}" onevent="openCardEditor"
+                            render=":formCardModal"/>
+                </h:commandLink>
+                <h:commandLink rendered="#{card.state == 'ARCHIVED'}">
+                    <span class="glyphicon glyphicon-remove" title="#{msg.delete}"
+                          style="position: absolute; right: 15px; top: 12px;"/>
+                    <f:ajax event="click" listener="#{archivedMbean.removeCard(card)}"
+                            render="@form"/>
+                </h:commandLink>
+                <h:commandLink rendered="#{card.state == 'ARCHIVED'}">
+                    <span class="glyphicon glyphicon-share-alt" title="#{msg.return}"
+                          style="position: absolute; right: 37px; top: 12px; transform: scaleX(-1); "/>
+                    <f:ajax event="click" listener="#{archivedMbean.restoreCard(card)}"
+                            render="@form"/>
+                </h:commandLink>
+            </div>
+            <div class="panel-body">#{card.description}</div>
+        </div>
+    </li>
+</ui:composition>

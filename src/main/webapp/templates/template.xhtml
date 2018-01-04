@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" >
+<html xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<f:loadBundle basename="messages" var="msg"/>
+
+<f:view contentType="text/html">
+    <h:head>
+        <title>Kanban Board</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+        <link href="/images/fav.ico" rel="shortcut icon"/>
+        <script type="text/javascript" src="js/jquery-3.2.1.min.js"/>
+        <script type="text/javascript" src="js/jquery-ui-1.12.1.min.js"/>
+
+        <script type="text/javascript" src="js/default.js"/>
+        <script type="text/javascript" src="js/bootstrap.min.js"/>
+
+        <script type="text/javascript" src="bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"/>
+        <link type="text/css" rel="stylesheet" href="bootstrap-colorpicker/css/bootstrap-colorpicker.min.css"/>
+
+        <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css"/>
+    </h:head>
+    <h:body>
+        <ui:insert name="main"/>
+    </h:body>
+</f:view>
+</html>

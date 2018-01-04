@@ -1,0 +1,54 @@
+<ui:composition
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:h="http://xmlns.jcp.org/jsf/html"
+        xmlns:f="http://xmlns.jcp.org/jsf/core"
+        xmlns:o="http://omnifaces.org/ui"
+        xmlns="http://www.w3.org/1999/xhtml">
+
+    <link type="text/css" rel="stylesheet" href="css/board.css"/>
+
+    <div class="container">
+        <h:form id="formBoard">
+            <div style="display: flex;">
+                <div class="kb-stage" style="border-right: 2px black solid;">
+                    <label class="kb-stage-title" style="position:relative;">
+                        TO DO
+                        <h:commandLink>
+                            <span class="glyphicon glyphicon-plus-sign"
+                                  style="position: absolute; right: 10px; top: 4px;"/>
+                            <f:ajax event="click" listener="#{cardEditorMbean.createNewCard}" onevent="openCardEditor"
+                                    render=":formCardModal"/>
+                        </h:commandLink>
+                    </label>
+                    <ul id="todo" data-stage="TO_DO" class="kb-stage-content ui-sortable">
+                        <ui:repeat value="#{boardMbean.cardsToDo}" var="card">
+                            <ui:include src="/pages/parts/card.xhtml"/>
+                        </ui:repeat>
+                    </ul>
+
+                </div>
+                <div style=" flex: 1; border-right: 2px black solid;">
+                    <label class="kb-stage-title">DOING</label>
+                    <ul id="doing" data-stage="DOING" class="kb-stage-content ui-sortable">
+                        <ui:repeat value="#{boardMbean.cardsDoing}" var="card">
+                            <ui:include src="/pages/parts/card.xhtml"/>
+                        </ui:repeat>
+                    </ul>
+                </div>
+
+                <div style="flex: 1;">
+                    <label class="kb-stage-title">DONE</label>
+                    <ul id="done" data-stage="DONE" class="kb-stage-content ui-sortable">
+                        <ui:repeat value="#{boardMbean.cardsDone}" var="card">
+                            <ui:include src="/pages/parts/card.xhtml"/>
+                        </ui:repeat>
+                    </ul>
+                </div>
+            </div>
+            <o:commandScript name="onDrop" action="#{boardMbean.onDrop}"/>
+        </h:form>
+    </div>
+
+    <script type="text/javascript" src="js/board.js"/>
+
+</ui:composition>

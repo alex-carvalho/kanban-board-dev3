@@ -1,0 +1,8 @@
+swarm:
+  datasources:
+    data-sources:
+      kanban:
+        driver-name: h2
+        connection-url: ${JDBC_DATABASE_URL}
+        user-name: ${JDBC_DATABASE_USERNAME}
+        password: ${JDBC_DATABASE_PASSWORD}

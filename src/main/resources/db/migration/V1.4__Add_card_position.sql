@@ -1,0 +1,4 @@
+ALTER TABLE cards
+  ADD color VARCHAR(50) DEFAULT '#ffffff' NOT NULL;
+ALTER TABLE cards
+  ADD position INT DEFAULT 0 NOT NULL;

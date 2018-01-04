@@ -1,0 +1,21 @@
+<ui:composition
+        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
+
+    <div class="container">
+        <h:form id="formArchived">
+            <h:panelGroup id="panelArchiveds" layout="block" styleClass="row">
+
+                <h:panelGroup layout="block" rendered="#{empty archivedMbean.cards}" styleClass="jumbotron">
+                    <p>Não há cartões arquivados.</p>
+                </h:panelGroup>
+
+                <ui:repeat value="#{archivedMbean.cards}" var="card">
+                    <div class="col-xs-6 col-sm-4 col-md-3 card-archived">
+                        <ui:include src="/pages/parts/card.xhtml"/>
+                    </div>
+                </ui:repeat>
+            </h:panelGroup>
+        </h:form>
+    </div>
+</ui:composition>

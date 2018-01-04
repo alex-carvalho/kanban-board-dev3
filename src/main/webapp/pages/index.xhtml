@@ -1,0 +1,64 @@
+<html xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:o="http://omnifaces.org/ui"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<ui:composition template="/templates/template.xhtml">
+
+    <ui:define name="main">
+        <link type="text/css" rel="stylesheet" href="css/default.css"/>
+
+        <nav class="kb-header navbar navbar-static-top">
+            <div class="container">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand">Kanbam Board</a>
+                    </div>
+
+                    <ul class="nav navbar-nav nav-pills" style="float: left;">
+                        <li class="active">
+                            <a data-toggle="pill" onclick="showHome()" href="#home">#{msg.board}</a>
+                            <o:commandScript name="showHome" action="#{boardMbean.loadCards}" render="formBoard"
+                                             oncomplete="updateSortable()"/>
+                        </li>
+                        <li>
+                            <a data-toggle="pill" onclick="showArchiveds()" href="#archived">Arquivados</a>
+                            <o:commandScript name="showArchiveds" action="#{archivedMbean.loadArchived}"
+                                             render="formArchived"/>
+                        </li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right" style="float: right;">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                #{myProfileMbean.user.firstName} #{myProfileMbean.user.lastName}
+                                <span class="caret"/>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="" data-toggle="modal" onclick="showProfile()"
+                                       data-target="#myProfileModal"> #{msg.my_profile} </a>
+                                    <o:commandScript name="showProfile" render="formProfile"/>
+                                </li>
+                                <li><a href="/logout">#{msg.logout}</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="tab-content">
+            <div id="home" class="tab-pane fade in active">
+                <ui:include src="/pages/board.xhtml"/>
+            </div>
+            <div id="archived" class="tab-pane fade">
+                <ui:include src="/pages/archived.xhtml"/>
+            </div>
+        </div>
+
+        <ui:include src="/pages/parts/profile_editor.xhtml"/>
+        <ui:include src="/pages/parts/card_editor.xhtml"/>
+    </ui:define>
+</ui:composition>
+
+</html>
